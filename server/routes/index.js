@@ -35,4 +35,46 @@ router.get('/contact', (req, res, next) => {
    });
 });
 
+//GET /login - render the login view
+router.get('/login', (req, res, next)=>{
+  //check to see if the user is not already logged in
+  if(!req.user){
+    //render the login page
+    res.render('auth/login', {
+      title: "Login",
+      games: '',
+      messages: req.flash('loginMessage'),
+      displayName: req.user ? req.user.displayName : ''
+    });
+    return;
+  }else{
+    return res.redirect('/games'); //redirect to game list
+  }
+});
+
+//POST /login - process the login attempt
+router.post('/login', (req, res, next)=>{
+
+});
+
+//GET /register - render the registration view
+router.get('/register', (req, res, next)=>{
+ //check to see if the user is not already logged in
+  if(!req.user){
+    //TODO
+  }else{
+    return res.redirect('/games'); //redirect to game list
+  }
+});
+
+//POST /register - process the registration submission
+router.post('/register', (req, res, next)=>{
+
+});
+
+//GET /logout - process the logout request
+router.get('/logout', (req, res, next)=>{
+
+});
+
 module.exports = router;
